@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.alumnguide">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".AddPostActivity"></activity>
+        <activity android:name=".ResetPassword"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Register"></activity>
+        <activity android:name=".ProfileFragment"> </activity>
+<!--        <activity android:name=".SearchFragment"> </activity>-->
+<!--        <activity android:name=".NotificationsFragment"> </activity>-->
+<!--        <activity android:name=".FlashcardsFragment"> </activity>-->
+<!--        <activity android:name=".DocumentFragment"> </activity>-->
+<!--        <activity android:name=".JobsFragment"> </activity>-->
+<!--        <activity android:name=".AI_BotFragment"> </activity>-->
+      <activity android:name=".ForumFragment"> </activity>
+<!--        <activity android:name=".MessageFragment"> </activity>-->
+    </application>
+
+</manifest>

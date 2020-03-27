@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:contentPadding="5dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/cardview_light_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/uPictureIv"
+                    android:src="@drawable/ic_profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+                <TextView
+                    android:id="@+id/uNameTv"
+                    android:text="Name"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/pTimeTv"
+                    android:text="33 min"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/moreBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_more_black"
+                 />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/pTitleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Title"/>
+
+        <TextView
+            android:id="@+id/pDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description of the post"
+            android:textColor="#000000"
+            android:textSize="16sp"/>
+        <ImageView
+            android:id="@+id/pImageIv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#FFFFFF" />
+        <TextView
+            android:id="@+id/pLikesTv"
+            android:text="1k likes"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+           // android:background=""/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/likeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Like"
+                android:drawableLeft="@drawable/ic_like"
+                android:layout_marginLeft="15dp"
+                android:background="#ffffff"/>
+            <Button
+                android:id="@+id/commentBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Comment"
+                android:drawableLeft="@drawable/ic_comment"
+                android:layout_marginLeft="15dp"
+                android:background="#ffffff"/>
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save"
+                android:drawableLeft="@drawable/ic_save"
+                android:layout_marginLeft="15dp"
+                android:background="#ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
+

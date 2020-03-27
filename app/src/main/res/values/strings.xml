@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AlumnGuide</string>
+    <string name="current_academic_yr">Choose a country</string>
+
+    <string-array name="years_array">
+        <item> First Year </item>
+        <item> Second Year </item>
+        <item> Third Year </item>
+        <item> Fourth Year </item>
+        <item> Other </item>
+        <item> Graduate </item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+</resources>

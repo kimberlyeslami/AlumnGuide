@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_forum"
+            android:icon="@drawable/ic_forum"
+            android:title="Discussion Board" />
+        <item
+            android:id="@+id/nav_job"
+            android:icon="@drawable/ic_jobs"
+            android:title="Job Posting Board" />
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/ic_message"
+            android:title="Message" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_notifications"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_flashcards"
+            android:icon="@drawable/ic_flashcards"
+            android:title="Flashcards" />
+        <item
+            android:id="@+id/nav_documents"
+            android:icon="@drawable/ic_document"
+            android:title="Documents" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="Search" />
+        <item
+            android:id="@+id/nav_aibot"
+            android:icon="@drawable/ic_aibot"
+            android:title="AI Bot" />
+    </group>
+
+</menu>

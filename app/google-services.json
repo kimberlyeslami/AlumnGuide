@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "227259815968",
+    "firebase_url": "https://alumnguide-6f83e.firebaseio.com",
+    "project_id": "alumnguide-6f83e",
+    "storage_bucket": "alumnguide-6f83e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227259815968:android:7418578d65e3a840df4445",
+        "android_client_info": {
+          "package_name": "com.example.alumnguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227259815968-dmt9kgmnbtv3o4jpgrg4d8kf06d48i5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ7OGVZvKfODPAmAB3ookIMHgh8vEGH2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227259815968-dmt9kgmnbtv3o4jpgrg4d8kf06d48i5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
