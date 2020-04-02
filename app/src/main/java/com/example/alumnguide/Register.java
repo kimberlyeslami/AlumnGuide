@@ -89,11 +89,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     private void registerUser(final String username, final String email, final String password, final String confirmPass, final String currentYear, final String courseStudying) {
        try {
-           Log.d("myTag", "1");
            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                @Override
                public void onComplete(@NonNull Task<AuthResult> task) {
-                   Log.d("myTag", "1.5");
                    if (task.isSuccessful()) {
                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                        assert firebaseUser != null;
@@ -102,7 +100,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        Toast.makeText(Register.this, "Registered...\n" + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
                        startActivity(new Intent(Register.this, Login.class));
                        finish();
-                       Log.d("myTag", "2");
                         reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
                        Map<String, Object> users = new HashMap<>();
@@ -115,43 +112,23 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        users.put("courseStudying", courseStudying);
                        users.put("imageURL", "default");
 
+// Add a new document with a generated ID
 
-                       Log.d("myTag", "2.5");
-//// Add a new document with a generated ID
-                       Log.d("myTag", "3");
                    db.collection("users")
                             .add(users)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Log.d("fk you", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    Log.d("Document added", "DocumentSnapshot added with ID: " + documentReference.getId());
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                   Log.w("u 2", "Error adding document", e);
+                                   Log.w("Error", "Error adding document", e);
                                 }
                             });
-                       Log.d("myTag", "3.5");
-
-                       db.collection("Users").document("user").set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
-                           @Override
-                           public void onSuccess(Void aVoid) {
-                               Toast.makeText(Register.this, "User Registered", Toast.LENGTH_SHORT).show();
-
-                           }
-                       }).addOnFailureListener(new OnFailureListener() {
-                           @Override
-                           public void onFailure(@NonNull Exception e) {
-                               Toast.makeText(Register.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
-                           }
-                       });
-
-
                    }
-
-                   Log.d("myTag", "4");
                }
 
 
