@@ -21,7 +21,6 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile,container,false);
 
-
         signout = view.findViewById(R.id.signout_btn);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,8 +30,6 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         return view;
     }
 

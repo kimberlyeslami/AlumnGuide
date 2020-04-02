@@ -20,13 +20,14 @@ public class ForumFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        View view = inflater.inflate(R.layout.fragment_forum,container,false);
+
         addPost = view.findViewById(R.id.addPost_btn);
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),AddPostActivity.class));
-                Toast.makeText(getActivity(),"Add a post", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Add Post", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

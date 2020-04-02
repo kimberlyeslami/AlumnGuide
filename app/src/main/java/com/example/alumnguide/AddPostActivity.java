@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -98,7 +100,7 @@ public class AddPostActivity extends AppCompatActivity {
 
         actionBar.setSubtitle(email);
 
-        userDbref = FirebaseDatabase.getInstance().getReference("Users");
+        userDbref = FirebaseDatabase.getInstance().getReference("users");
         Query query = userDbref.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
