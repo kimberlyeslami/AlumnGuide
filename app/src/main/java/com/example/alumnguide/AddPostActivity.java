@@ -170,7 +170,7 @@ public class AddPostActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!uriTask.isSuccessful()) ;
+                    while (!uriTask.isSuccessful());
                     String downloadUri = uriTask.getResult().toString();
                     //post with image
                     if (uriTask.isSuccessful()) {
