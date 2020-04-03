@@ -26,4 +26,9 @@
         android:layout_marginEnd="23dp"
         android:text="Add Post" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postsRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>
