@@ -1,23 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile Fragment"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1EDED"
+    tools:context=".ProfileFragment">
 
-    <Button
-        android:id="@+id/signout_btn"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="241dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="32dp"
-        android:text="Sign out" />
-</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/signout_btn"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="241dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="32dp"
+            android:text="Sign out" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@android:color/holo_blue_light">
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp">
+
+            <ImageView
+                android:id="@+id/avatarIv"
+                android:layout_marginStart="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:src="@drawable/ic_add_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/emailTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="5dp" />
+
+
+                <TextView
+                    android:id="@+id/courseStudyingTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/currentYearTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

@@ -40,7 +40,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     FirebaseAuth firebaseAuth;
     DatabaseReference reference;
     FirebaseFirestore db;
-    //private String TAG;
+    FirebaseDatabase database;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         final Spinner spn_CurrentYear = findViewById(R.id.spn_CurrentYear);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.years_array, android.R.layout.simple_spinner_item);
@@ -100,7 +103,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        Toast.makeText(Register.this, "Registered...\n" + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
                        startActivity(new Intent(Register.this, Login.class));
                        finish();
-                        reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
+                       reference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
                        Map<String, Object> users = new HashMap<>();
                        users.put("id", userID);
@@ -113,25 +116,21 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        users.put("imageURL", "default");
 
 // Add a new document with a generated ID
-
-                   db.collection("users")
-                            .add(users)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d("Document added", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                   Log.w("Error", "Error adding document", e);
-                                }
-                            });
+                       reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                           @Override
+                           public void onComplete(@NonNull Task<Void> task) {
+                               if (task.isSuccessful()) {
+                                   Intent intent = new Intent(Register.this, Login.class);
+                                   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                   startActivity(intent);
+                                   finish();
+                               }
+                           }
+                       });
+                   } else {
+                       Toast.makeText(Register.this, "SignUp Unsuccessful. please try again.", Toast.LENGTH_SHORT).show();
                    }
                }
-
-
            });
        } catch (Exception e) {
            e.printStackTrace();

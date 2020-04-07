@@ -99,6 +99,7 @@ public class ForumFragment extends Fragment {
         });
     }
 
+
     private void searchPosts(String searchQuery){
 
     }

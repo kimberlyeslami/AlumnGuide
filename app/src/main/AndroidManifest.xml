@@ -23,14 +23,14 @@
         </activity>
         <activity android:name=".Register"></activity>
         <activity android:name=".ProfileFragment"> </activity>
-<!--        <activity android:name=".SearchFragment"> </activity>-->
-<!--        <activity android:name=".NotificationsFragment"> </activity>-->
-<!--        <activity android:name=".FlashcardsFragment"> </activity>-->
-<!--        <activity android:name=".DocumentFragment"> </activity>-->
-<!--        <activity android:name=".JobsFragment"> </activity>-->
-<!--        <activity android:name=".AI_BotFragment"> </activity>-->
+        <activity android:name=".SearchFragment"> </activity>
+        <activity android:name=".NotificationsFragment"> </activity>
+        <activity android:name=".FlashcardsFragment"> </activity>
+       <activity android:name=".DocumentFragment"> </activity>
+       <activity android:name=".JobsFragment"> </activity>
+        <activity android:name=".AI_BotFragment"> </activity>
       <activity android:name=".ForumFragment"> </activity>
-<!--        <activity android:name=".MessageFragment"> </activity>-->
+        <activity android:name=".MessageFragment"> </activity>
     </application>
 
 </manifest>

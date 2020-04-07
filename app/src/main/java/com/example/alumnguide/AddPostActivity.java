@@ -346,7 +346,8 @@ public class AddPostActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.menu.);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        menu.findItem(R.id.action_add_post).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
