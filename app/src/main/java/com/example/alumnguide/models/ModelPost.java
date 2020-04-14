@@ -3,8 +3,7 @@ package com.example.alumnguide.models;
 public class ModelPost {
     String pId,pTitle,pDescr,pImage,pTime,uid,uEmail,uDp,uName;
 
-    public ModelPost(){
-    }
+    public ModelPost(){}
 
     public ModelPost(String pId, String pTitle, String pDescr, String pImage, String pTime, String uid, String uEmail, String uDp, String uName) {
         this.pId = pId;

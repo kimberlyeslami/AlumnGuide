@@ -92,7 +92,6 @@ public class AddPostActivity extends AppCompatActivity {
 
         pd = new ProgressDialog(this);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
@@ -344,12 +343,6 @@ public class AddPostActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        menu.findItem(R.id.action_add_post).setVisible(false);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     //handles permissions results
     @Override
@@ -358,7 +351,7 @@ public class AddPostActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case CAMERA_REQUEST_CODE: {
-                if (grantResults.length > 0) {
+                if (grantResults.length>0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted && storageAccepted) {
@@ -367,12 +360,11 @@ public class AddPostActivity extends AppCompatActivity {
                         Toast.makeText(this, "Both Camera & Storage permissions are necessary..", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-
                 }
             }
             break;
             case STORAGE_REQUEST_CODE: {
-                if (grantResults.length > 0) {
+                if (grantResults.length>0) {
                     boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (storageAccepted) {
                         pickFromGallery();

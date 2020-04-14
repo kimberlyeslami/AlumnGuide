@@ -24,6 +24,7 @@ import java.util.Locale;
 
 
 public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
+
     Context context;
     List<ModelPost> postList;
 
@@ -111,7 +112,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+       return postList.size();
     }
 
     class MyHolder extends RecyclerView.ViewHolder{

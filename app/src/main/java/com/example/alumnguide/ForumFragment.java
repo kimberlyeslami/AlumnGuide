@@ -1,17 +1,22 @@
 package com.example.alumnguide;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +34,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ForumFragment extends Fragment {
+
+
+    FirebaseAuth firebaseAuth;
+
     RecyclerView recyclerView;
     List<ModelPost> postList;
+
     AdapterPosts adapterPosts;
-    Button addPost;
-    FirebaseAuth firebaseAuth;
+    ActionBar actionBar;
 
     public ForumFragment() {
 
@@ -42,13 +51,13 @@ public class ForumFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_forum,container,false);
+        View view = inflater.inflate(R.layout.fragment_forum, container, false);
         //init
         firebaseAuth = FirebaseAuth.getInstance();
 
         //recycler view and its properties
         recyclerView = view.findViewById(R.id.postsRecyclerview);
-        LinearLayoutManager layoutManager = new LinearLayoutManager((getActivity()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         //show newest post first, for this load from last
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
@@ -60,14 +69,6 @@ public class ForumFragment extends Fragment {
         postList = new ArrayList<>();
         loadPosts();
 
-        addPost = view.findViewById(R.id.addPost_btn);
-        addPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),AddPostActivity.class));
-                Toast.makeText(getActivity(),"Add Post", Toast.LENGTH_SHORT).show();
-            }
-        });
         return view;
     }
 
@@ -85,7 +86,7 @@ public class ForumFragment extends Fragment {
                     postList.add(modelPost);
 
                     //adapter
-                    adapterPosts = new AdapterPosts(getActivity(),postList);
+                    adapterPosts = new AdapterPosts(getActivity(), postList);
                     //set adapter to recycler view
                     recyclerView.setAdapter(adapterPosts);
                 }
@@ -93,15 +94,88 @@ public class ForumFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-            // in case of error
-                Toast.makeText(getActivity(), ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                // in case of error
+                Toast.makeText(getActivity(), "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    private void searchPosts(final String searchQuery) {
+        //path of all posts
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        //get all data from this ref
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    ModelPost modelPost = ds.getValue(ModelPost.class);
 
-    private void searchPosts(String searchQuery){
+                    if (modelPost.getpTitle().toLowerCase().contains(searchQuery.toLowerCase()) ||
+                            modelPost.getpDescr().toLowerCase().contains(searchQuery.toLowerCase())) {
+                        postList.add(modelPost);
+                    }
+                    //adapter
+                    adapterPosts = new AdapterPosts(getActivity(), postList);
+                    //set adapter to recycler view
+                    recyclerView.setAdapter(adapterPosts);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // in case of error
+                Toast.makeText(getActivity(), "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!TextUtils.isEmpty(query)) {
+                    searchPosts(query);
+                } else {
+                    loadPosts();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (!TextUtils.isEmpty(s)) {
+                    searchPosts(s);
+                } else {
+                    loadPosts();
+                }
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            firebaseAuth.signOut();
+            startActivity(new Intent(getActivity(),Login.class));
+            Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
+        }
+        if (id == R.id.action_add_post) {
+            startActivity(new Intent(getActivity(), AddPostActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
