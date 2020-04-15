@@ -45,12 +45,6 @@ private DrawerLayout drawer;
             case R.id.nav_aibot:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AI_BotFragment()).commit();
                 break;
-            case R.id.nav_documents:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DocumentFragment()).commit();
-                break;
-            case R.id.nav_flashcards:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FlashcardsFragment()).commit();
-                break;
             case R.id.nav_forum:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ForumFragment()).commit();
                 break;
@@ -62,9 +56,6 @@ private DrawerLayout drawer;
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-                break;
-            case R.id.nav_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchFragment()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
