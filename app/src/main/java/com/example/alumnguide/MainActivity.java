@@ -57,6 +57,9 @@ private DrawerLayout drawer;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                 break;
+            case R.id.nav_users:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserFragment()).commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

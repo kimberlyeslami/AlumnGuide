@@ -39,10 +39,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     FirebaseAuth firebaseAuth;
     DatabaseReference reference;
-    FirebaseFirestore db;
     FirebaseDatabase database;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +55,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         btn_Register = findViewById(R.id.btn_Register);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
         database = FirebaseDatabase.getInstance();
 
         final Spinner spn_CurrentYear = findViewById(R.id.spn_CurrentYear);
@@ -113,9 +109,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        users.put("confirmPassword", confirmPass);
                        users.put("currentYear", currentYear);
                        users.put("courseStudying", courseStudying);
-                       users.put("imageURL", "default");
+                       users.put("imageURI", "noImage");
 
-// Add a new document with a generated ID
                        reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                            @Override
                            public void onComplete(@NonNull Task<Void> task) {
@@ -136,7 +131,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
            e.printStackTrace();
        }
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

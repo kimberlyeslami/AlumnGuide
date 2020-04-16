@@ -176,7 +176,7 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     private void beginUpdate(String title, String description, String editPostId) {
-    pd.setMessage("updating post");
+    pd.setMessage("Updating Post");
     pd.show();
 
     if (!editImage.equals("noImage")) {
