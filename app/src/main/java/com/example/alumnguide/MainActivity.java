@@ -10,6 +10,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.alumnguide.fragments.AI_BotFragment;
+import com.example.alumnguide.fragments.ForumFragment;
+import com.example.alumnguide.fragments.JobsFragment;
+import com.example.alumnguide.fragments.MessageFragment;
+import com.example.alumnguide.fragments.NotificationsFragment;
+import com.example.alumnguide.fragments.ProfileFragment;
+import com.example.alumnguide.fragments.UserFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

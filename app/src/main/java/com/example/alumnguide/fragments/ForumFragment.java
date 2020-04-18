@@ -1,4 +1,4 @@
-package com.example.alumnguide;
+package com.example.alumnguide.fragments;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -21,6 +21,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alumnguide.AddPostActivity;
+import com.example.alumnguide.Login;
+import com.example.alumnguide.R;
 import com.example.alumnguide.adapters.AdapterPosts;
 import com.example.alumnguide.models.ModelPost;
 import com.google.firebase.auth.FirebaseAuth;
@@ -170,7 +173,7 @@ public class ForumFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(),Login.class));
+            startActivity(new Intent(getActivity(), Login.class));
             Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_add_post) {

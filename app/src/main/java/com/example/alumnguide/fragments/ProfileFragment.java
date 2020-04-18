@@ -1,4 +1,4 @@
-package com.example.alumnguide;
+package com.example.alumnguide.fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -28,6 +28,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.alumnguide.AddPostActivity;
+import com.example.alumnguide.Login;
+import com.example.alumnguide.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -414,7 +417,7 @@ public class ProfileFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(),Login.class));
+            startActivity(new Intent(getActivity(), Login.class));
             Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_add_post) {

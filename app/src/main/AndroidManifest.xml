@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alumnguide">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"> </uses-permission>
-    <uses-permission android:name="android.permission.CAMERA"> </uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"> </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,25 +13,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPostActivity"> </activity>
-        <activity android:name=".ResetPassword"> </activity>
+        <activity android:name=".ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddPostActivity" />
+        <activity android:name=".ResetPassword" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"> </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"> </activity>
-        <activity android:name=".ProfileFragment"> </activity>
-        <activity android:name=".NotificationsFragment"> </activity>
-        <activity android:name=".JobsFragment"> </activity>
-        <activity android:name=".AI_BotFragment"> </activity>
-        <activity android:name=".ForumFragment"> </activity>
-        <activity android:name=".MessageFragment"> </activity>
-        <activity android:name=".UserFragment"> </activity>
+        <activity android:name=".Register" />
+        <activity android:name=".fragments.ProfileFragment" />
+        <activity android:name=".fragments.NotificationsFragment" />
+        <activity android:name=".fragments.JobsFragment" />
+        <activity android:name=".fragments.AI_BotFragment" />
+        <activity android:name=".fragments.ForumFragment" />
+        <activity
+            android:name=".fragments.MessageFragment" />
+        <activity android:name=".fragments.UserFragment" />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.alumnguide.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alumnguide.ChatActivity;
 import com.example.alumnguide.R;
 import com.example.alumnguide.models.ModelUser;
 import com.squareup.picasso.Picasso;
@@ -36,6 +38,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int i) {
+        final String hisUID = userList.get(i).getId();
         String image = userList.get(i).getImage();
         String username = userList.get(i).getUsername();
         final String email = userList.get(i).getEmail();
@@ -56,7 +59,9 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.MyHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ""+email, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("hisUid",hisUID);
+                context.startActivity(intent);
             }
         });
     }
