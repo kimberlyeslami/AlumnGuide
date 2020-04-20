@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alumnguide.AddPostActivity;
 import com.example.alumnguide.Login;
+import com.example.alumnguide.MainActivity;
 import com.example.alumnguide.R;
 import com.example.alumnguide.adapters.AdapterUser;
 import com.example.alumnguide.models.ModelUser;
@@ -155,12 +156,21 @@ public class UserFragment extends Fragment {
         });
     }
 
+    private void checkUserStatus() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+
+        }else {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
+        }
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(), Login.class));
-            Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
+            checkUserStatus();
         }
         if (id == R.id.action_add_post) {
             startActivity(new Intent(getActivity(), AddPostActivity.class));

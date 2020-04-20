@@ -23,10 +23,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alumnguide.AddPostActivity;
 import com.example.alumnguide.Login;
+import com.example.alumnguide.MainActivity;
 import com.example.alumnguide.R;
 import com.example.alumnguide.adapters.AdapterPosts;
 import com.example.alumnguide.models.ModelPost;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -168,13 +170,21 @@ public class ForumFragment extends Fragment {
         });
         super.onCreateOptionsMenu(menu, inflater);
     }
-
+    private void checkUserStatus() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            String myUid;
+            myUid = user.getUid();
+        }else {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
+        }
+    }
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(), Login.class));
-            Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
+            checkUserStatus();
         }
         if (id == R.id.action_add_post) {
             startActivity(new Intent(getActivity(), AddPostActivity.class));
