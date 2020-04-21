@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -106,16 +108,22 @@ public class ChatActivity extends AppCompatActivity {
                     //get data
                     String name = ""+ds.child("username").getValue();
                     hisImage = ""+ds.child("imageURI").getValue();
+                    String typingStatus = ""+ds.child("typingTo").getValue();
 
-                    String onlineStatus = ""+ds.child("onlineStatus").getValue();
-                    if (onlineStatus.equals("online")){
-                        userStatusTv.setText(onlineStatus);
+                    if (typingStatus.equals(myUid)){
+                        userStatusTv.setText("typing..");
                     } else {
-                        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-                        cal.setTimeInMillis(Long.parseLong(onlineStatus));
-                        String dateTime = DateFormat.format("dd/MM/yyyy hh:mm: aa", cal).toString();
-                        userStatusTv.setText("Last seen at: "+ dateTime);
+                        String onlineStatus = ""+ds.child("onlineStatus").getValue();
+                        if (onlineStatus.equals("online")){
+                            userStatusTv.setText(onlineStatus);
+                        } else {
+                            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                            cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                            String dateTime = DateFormat.format("dd/MM/yyyy hh:mm: aa", cal).toString();
+                            userStatusTv.setText("Last seen at: "+ dateTime);
+                        }
                     }
+
 
                     //set data
                     nameTv.setText(name);
@@ -140,6 +148,28 @@ public class ChatActivity extends AppCompatActivity {
                     Toast.makeText(ChatActivity.this, "Cannot send the empty message..", Toast.LENGTH_SHORT).show();
                 }
                 sendMessage(message);
+            }
+        });
+
+        messageEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() == 0) {
+                    checkTypingStatus("noOne");
+                } else {
+                    checkTypingStatus(hisUid);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -225,6 +255,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onPause();
         String timestamp = String.valueOf(System.currentTimeMillis());
         checkOnlineStatus(timestamp);
+        checkTypingStatus("noOne");
         userDbRefForSeen.removeEventListener(seenListener);
    }
 
@@ -248,6 +279,14 @@ public class ChatActivity extends AppCompatActivity {
         DatabaseReference  dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("onlineStatus", status);
+
+        dbRef.updateChildren(hashMap);
+    }
+
+    private void checkTypingStatus(String typing){
+        DatabaseReference  dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("typingTo", typing);
 
         dbRef.updateChildren(hashMap);
     }
