@@ -103,6 +103,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
                        Map<String, Object> users = new HashMap<>();
                        users.put("id", userID);
+                       users.put("onlineStatus", "online");
                        users.put("username", username);
                        users.put("email", email);
                        users.put("password", password);

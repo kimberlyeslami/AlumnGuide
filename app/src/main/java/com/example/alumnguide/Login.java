@@ -75,7 +75,7 @@ public class Login extends AppCompatActivity {
                                         finish();
 
                                     } else {
-                                        Toast.makeText(Login.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, "Authentication failed! Please try again..", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

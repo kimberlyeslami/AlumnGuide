@@ -170,6 +170,7 @@ public class UserFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
+            startActivity(new Intent(getActivity(), Login.class));
             checkUserStatus();
         }
         if (id == R.id.action_add_post) {

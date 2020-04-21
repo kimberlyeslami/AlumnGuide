@@ -48,6 +48,7 @@ public class ForumFragment extends Fragment {
 
     AdapterPosts adapterPosts;
     ActionBar actionBar;
+    String myUid;
 
     public ForumFragment() {
 
@@ -173,7 +174,6 @@ public class ForumFragment extends Fragment {
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
-            String myUid;
             myUid = user.getUid();
         }else {
             startActivity(new Intent(getActivity(), MainActivity.class));
@@ -184,7 +184,9 @@ public class ForumFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
+            startActivity(new Intent(getActivity(), Login.class));
             checkUserStatus();
+
         }
         if (id == R.id.action_add_post) {
             startActivity(new Intent(getActivity(), AddPostActivity.class));

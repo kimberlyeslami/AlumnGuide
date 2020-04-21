@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.alumnguide.AddPostActivity;
 import com.example.alumnguide.Login;
+import com.example.alumnguide.MainActivity;
 import com.example.alumnguide.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,6 +60,7 @@ public class ProfileFragment extends Fragment {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    String myUid;
 
     //storage
     StorageReference storageReference;
@@ -413,10 +415,20 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void checkUserStatus() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            myUid = user.getUid();
+        }else {
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
+        }
+    }
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
+            checkUserStatus();
             startActivity(new Intent(getActivity(), Login.class));
             Toast.makeText(getActivity(),"Signed out", Toast.LENGTH_SHORT).show();
         }
