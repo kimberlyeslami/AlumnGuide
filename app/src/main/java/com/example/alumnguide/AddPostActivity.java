@@ -1,13 +1,5 @@
 package com.example.alumnguide;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -20,12 +12,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,8 +37,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -124,13 +121,13 @@ public class AddPostActivity extends AppCompatActivity {
 
         actionBar.setSubtitle(email);
 
-        userDbref = FirebaseDatabase.getInstance().getReference("users");
+        userDbref = FirebaseDatabase.getInstance().getReference("Users");
         Query query = userDbref.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    name = "" + ds.child("name").getValue();
+                    name = "" + ds.child("username").getValue();
                     email = "" + ds.child("email").getValue();
                     dp = "" + ds.child("image").getValue();
                 }
@@ -192,12 +189,14 @@ public class AddPostActivity extends AppCompatActivity {
     private void updateWithoutImage(String title, String description, String editPostId) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("uid", uid);
-        hashMap.put("uName", name);
+        hashMap.put("username", name);
         hashMap.put("uEmail", email);
         hashMap.put("uDp", dp);
         hashMap.put("pTitle", title);
         hashMap.put("pDescr", description);
         hashMap.put("pImage", "noImage");
+        hashMap.put("pLikes","0");
+        hashMap.put("pComments","0");
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
         ref.child(editPostId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -214,7 +213,6 @@ public class AddPostActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void updateWithNowImage(final String title, final String description, final String editPostId) {
         String timeStamp = String.valueOf(System.currentTimeMillis());
@@ -237,12 +235,14 @@ public class AddPostActivity extends AppCompatActivity {
                 if (uriTask.isSuccessful()) {
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("uid", uid);
-                    hashMap.put("uName", name);
+                    hashMap.put("username", name);
                     hashMap.put("uEmail", email);
                     hashMap.put("uDp", dp);
                     hashMap.put("pTitle", title);
                     hashMap.put("pDescr", description);
                     hashMap.put("pImage", downloadUri);
+                    hashMap.put("pLikes","0");
+                    hashMap.put("pComments","0");
 
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
                     ref.child(editPostId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -273,7 +273,6 @@ public class AddPostActivity extends AppCompatActivity {
 
     }
 
-
     private void updateWasWithImage(final String title, final String description, final String editPostId) {
         StorageReference mPictureRef = FirebaseStorage.getInstance().getReferenceFromUrl(editImage);
         mPictureRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -299,12 +298,14 @@ public class AddPostActivity extends AppCompatActivity {
                         if (uriTask.isSuccessful()) {
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("uid", uid);
-                            hashMap.put("uName", name);
+                            hashMap.put("username", name);
                             hashMap.put("uEmail", email);
                             hashMap.put("uDp", dp);
                             hashMap.put("pTitle", title);
                             hashMap.put("pDescr", description);
                             hashMap.put("pImage", downloadUri);
+                            hashMap.put("pLikes","0");
+                            hashMap.put("pComments","0");
 
                             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
                             ref.child(editPostId).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -402,7 +403,7 @@ public class AddPostActivity extends AppCompatActivity {
                     if (uriTask.isSuccessful()) {
                         HashMap<Object, String> hashMap = new HashMap<>();
                         hashMap.put("uid", uid);
-                        hashMap.put("uName", name);
+                        hashMap.put("username", name);
                         hashMap.put("uEmail", email);
                         hashMap.put("uDp", dp);
                         hashMap.put("pId", timeStamp);
@@ -410,6 +411,8 @@ public class AddPostActivity extends AppCompatActivity {
                         hashMap.put("pDescr", description);
                         hashMap.put("pImage", downloadUri);
                         hashMap.put("pTime", timeStamp);
+                        hashMap.put("pLikes","0");
+                        hashMap.put("pComments","0");
 
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
                         ref.child(timeStamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -441,7 +444,7 @@ public class AddPostActivity extends AppCompatActivity {
         } else { //post without image
             HashMap<Object, String> hashMap = new HashMap<>();
             hashMap.put("uid", uid);
-            hashMap.put("uName", name);
+            hashMap.put("username", name);
             hashMap.put("uEmail", email);
             hashMap.put("uDp", dp);
             hashMap.put("pId", timeStamp);
@@ -449,6 +452,8 @@ public class AddPostActivity extends AppCompatActivity {
             hashMap.put("pDescr", description);
             hashMap.put("pImage", "noImage");
             hashMap.put("pTime", timeStamp);
+            hashMap.put("pLikes","0");
+            hashMap.put("pComments","0");
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
             ref.child(timeStamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -1,14 +1,7 @@
 package com.example.alumnguide;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -19,9 +12,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alumnguide.adapters.AdapterChat;
 import com.example.alumnguide.models.ModelChat;
@@ -40,7 +38,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
 
 public class ChatActivity extends AppCompatActivity {
     //views from xml
@@ -123,7 +120,6 @@ public class ChatActivity extends AppCompatActivity {
                             userStatusTv.setText("Last seen at: "+ dateTime);
                         }
                     }
-
 
                     //set data
                     nameTv.setText(name);
@@ -308,7 +304,6 @@ public class ChatActivity extends AppCompatActivity {
             firebaseAuth.signOut();
             checkUserStatus();
             startActivity(new Intent(this , Login.class));
-
         }
         return super.onOptionsItemSelected(item);
     }

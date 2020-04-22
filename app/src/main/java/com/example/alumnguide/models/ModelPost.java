@@ -1,20 +1,24 @@
 package com.example.alumnguide.models;
 
 public class ModelPost {
-    String pId,pTitle,pDescr,pImage,pTime,uid,uEmail,uDp,uName;
+    String pId,pTitle,pDescr, pLikes, pComments,pImage,pTime,uid,uEmail,uDp, username;
 
-    public ModelPost(){}
+    public ModelPost(){
 
-    public ModelPost(String pId, String pTitle, String pDescr, String pImage, String pTime, String uid, String uEmail, String uDp, String uName) {
+    }
+
+    public ModelPost(String pId, String pTitle, String pDescr, String pLikes, String pComments, String pImage, String pTime, String uid, String uEmail, String uDp, String username) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pDescr = pDescr;
+        this.pLikes = pLikes;
+        this.pComments = pComments;
         this.pImage = pImage;
         this.pTime = pTime;
         this.uid = uid;
         this.uEmail = uEmail;
         this.uDp = uDp;
-        this.uName = uName;
+        this.username = username;
     }
 
     public String getpId() {
@@ -39,6 +43,22 @@ public class ModelPost {
 
     public void setpDescr(String pDescr) {
         this.pDescr = pDescr;
+    }
+
+    public String getpLikes() {
+        return pLikes;
+    }
+
+    public void setpLikes(String pLikes) {
+        this.pLikes = pLikes;
+    }
+
+    public String getpComments() {
+        return pComments;
+    }
+
+    public void setpComments(String pComments) {
+        this.pComments = pComments;
     }
 
     public String getpImage() {
@@ -81,11 +101,11 @@ public class ModelPost {
         this.uDp = uDp;
     }
 
-    public String getuName() {
-        return uName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setuName(String uName) {
-        this.uName = uName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
