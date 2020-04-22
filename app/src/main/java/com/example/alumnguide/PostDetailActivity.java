@@ -165,9 +165,10 @@ public class PostDetailActivity extends AppCompatActivity {
                     ModelComment modelComment = ds.getValue(ModelComment.class);
 
                     commentList.add(modelComment);
+                    //pass myuid and postid as a parameter of comment adapter
 
                     //setup adapter
-                    adapterComments = new AdapterComments(getApplicationContext(),commentList);
+                    adapterComments = new AdapterComments(getApplicationContext(),commentList,myUid,postId);
                     //set adapter
                     recyclerView.setAdapter(adapterComments);
                 }
@@ -384,7 +385,7 @@ public class PostDetailActivity extends AppCompatActivity {
      //whenever users add comment increase the comment count
         mProcessComment = true;
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(mProcessComment){
