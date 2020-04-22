@@ -14,10 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PostDetailActivity"></activity>
+        <activity android:name=".JobPostDetailActivity"></activity>
         <activity
             android:name=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddPostActivity" />
+        <activity android:name=".AddJobPostActivity" />
         <activity android:name=".ResetPassword" />
         <activity
             android:name=".MainActivity"
