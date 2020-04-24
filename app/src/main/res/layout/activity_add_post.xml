@@ -41,6 +41,7 @@
             android:gravity="start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <!-- Button to publish posts -->
         <Button
             android:id="@+id/pUploadBtn"

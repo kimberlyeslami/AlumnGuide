@@ -1,10 +1,7 @@
 package com.example.alumnguide;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,16 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,7 +72,13 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                 } else if (password.length() < 6) {
                     txt_Password.setError("Password Length needs to be at least 6 characters");
                     txt_Password.setFocusable(true);
-                } else {
+                }else if (confirmPass.length() < 6) {
+                    txt_confPass.setError("Password Length needs to be at least 6 characters");
+                    txt_confPass.setFocusable(true);
+                } else if (!confirmPass.equals(password)) {
+                    txt_confPass.setError("The passwords do not match.");
+                    txt_confPass.setFocusable(true);
+                }else {
                     registerUser(username, email, password, confirmPass, currentYear, courseStudying);
                 }
             }
