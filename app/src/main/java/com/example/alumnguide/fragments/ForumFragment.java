@@ -183,8 +183,8 @@ public class ForumFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            startActivity(new Intent(getActivity(), Login.class));
             checkUserStatus();
+            startActivity(new Intent(getActivity(), Login.class));
 
         }
         if (id == R.id.action_add_post) {

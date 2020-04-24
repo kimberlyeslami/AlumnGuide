@@ -155,7 +155,7 @@ public class JobPostDetailActivity extends AppCompatActivity {
         //init
         commentList = new ArrayList<>();
         //paths of the post to get comments
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("JobPosts").child(postId).child("Comments");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("JobPosts").child(postId).child("JobComments");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -347,7 +347,7 @@ public class JobPostDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Comment is empty", Toast.LENGTH_SHORT).show();
             return;
         }
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("JobPosts").child(postId).child("Comments");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("JobPosts").child(postId).child("JobComments");
         String timeStamp = String.valueOf(System.currentTimeMillis());
 
         HashMap<String,Object> hashMap = new HashMap<>();

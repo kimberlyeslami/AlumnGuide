@@ -106,7 +106,7 @@ public class AdapterJobsComments extends RecyclerView.Adapter<AdapterJobsComment
 
     private void deleteComment(String cid) {
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("JobPosts").child(postId);
-        ref.child("Comments").child(cid).removeValue();
+        ref.child("JobComments").child(cid).removeValue();
 
         //now update comment count
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
