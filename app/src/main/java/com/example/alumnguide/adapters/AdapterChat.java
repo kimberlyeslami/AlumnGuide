@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alumnguide.R;
+import com.example.alumnguide.Security;
 import com.example.alumnguide.models.ModelChat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +59,11 @@ FirebaseUser fUser;
         String dateTime = DateFormat.format("dd/MM/yyyy hh:mm: aa", cal).toString();
 
         //set data
-        holder.messageTv.setText(message);
+        try {
+            holder.messageTv.setText(Security.decrypt(message));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         holder.timeTv.setText(dateTime);
         try{
             Picasso.get().load(imageUri).into(holder.profileIv);

@@ -12,4 +12,9 @@
         android:title="Add Post"
         app:showAsAction="always"
         android:icon="@drawable/ic_add"/>
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="menu_refresh"
+        app:showAsAction="always" />
 </menu>

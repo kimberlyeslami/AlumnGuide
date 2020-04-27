@@ -179,9 +179,6 @@ public class PostDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
     private void showMoreOptions() {
@@ -201,7 +198,7 @@ public class PostDetailActivity extends AppCompatActivity {
                 if (id == 0) {
                     //delete is clicked
                     beginDelete();
-                } else   if (id == 1) {
+                } else if (id == 1) {
                     //edit is clicked
                     Intent intent = new Intent(PostDetailActivity.this, AddPostActivity.class);
                     intent.putExtra("key","editPost");

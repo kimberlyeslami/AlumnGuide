@@ -217,10 +217,10 @@ public class AdapterJobPosts extends RecyclerView.Adapter<AdapterJobPosts.MyHold
                 if (id == 0) {
                     //delete is clicked
                     beginDelete(pId,pImage);
-                } else   if (id == 1) {
+                } else  if (id == 1) {
                     //edit is clicked
                     Intent intent = new Intent(context, AddJobPostActivity.class);
-                    intent.putExtra("key","edit post");
+                    intent.putExtra("key","editPost");
                     intent.putExtra("editPostId",pId);
                     context.startActivity(intent);
                 } else if (id==2){

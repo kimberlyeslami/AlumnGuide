@@ -106,8 +106,11 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                        users.put("typingTo", "noOne");
                        users.put("username", username);
                        users.put("email", email);
-                       users.put("password", password);
-                       users.put("confirmPassword", confirmPass);
+                       try {
+                           users.put("password", Security.encrypt(password));
+                       } catch (Exception e) {
+                           e.printStackTrace();
+                       }
                        users.put("currentYear", currentYear);
                        users.put("courseStudying", courseStudying);
                        users.put("imageURI", "noImage");

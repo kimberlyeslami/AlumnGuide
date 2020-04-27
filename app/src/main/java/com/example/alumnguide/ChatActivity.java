@@ -232,7 +232,11 @@ public class ChatActivity extends AppCompatActivity {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", myUid);
         hashMap.put("receiver", hisUid);
-        hashMap.put("message", message);
+        try {
+            hashMap.put("message", Security.encrypt(message));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         hashMap.put("timestamp", timestamp);
         hashMap.put("isSeen", false);
         databaseReference.child("Chats").push().setValue(hashMap);

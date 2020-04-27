@@ -220,7 +220,7 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                 } else   if (id == 1) {
                     //edit is clicked
                     Intent intent = new Intent(context, AddPostActivity.class);
-                    intent.putExtra("key","edit post");
+                    intent.putExtra("key","editPost");
                     intent.putExtra("editPostId",pId);
                     context.startActivity(intent);
                 } else if (id==2){
